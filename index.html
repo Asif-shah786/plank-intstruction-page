@@ -24,6 +24,15 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
+    .email-input {
+      padding: 8px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      width: 250px;
+    }
+
     button {
       padding: 12px 20px;
       font-size: 16px;
@@ -43,17 +52,28 @@
   <h1>Plank Mobile App</h1>
   <img src="plank_image.jpg" alt="Plank Exercise" class="plank-image">
   <p>
-    Welcome to Plank Mobile App! To delete your app account and associated data, please click the button below.
+    Welcome to Plank Mobile App! To delete your app account and associated data, please enter your email address below and click the button.
     You'll receive an email confirming your account deletion request.
   </p>
+  <input type="email" class="email-input" id="userEmail" placeholder="Your Email Address">
   <button onclick="sendDeletionEmail()">Request Deletion</button>
 
   <script>
     function sendDeletionEmail() {
       var recipientEmail = "asif.shah9091@gmail.com";
+      var userEmail = document.getElementById("userEmail").value;
+
+      if (!userEmail) {
+        alert("Please enter your email address before sending the email.");
+        return;
+      }
+
+      // Format the email
+      var emailSubject = "Account Deletion Request";
+      var emailBody = "Dear Plank Mobile App Support Team,\n\nI would like to request the deletion of my app account and associated data.\n\nMy email address: " + userEmail + "\n\nPlease process my request accordingly.\n\nSincerely,\n[Your Name]";
 
       // Simulating email functionality using an alert
-      alert("Account deletion email has been sent to: " + recipientEmail);
+      alert("Account deletion email has been sent to: " + recipientEmail + "\n\nEmail content:\n\nSubject: " + emailSubject + "\n\n" + emailBody);
     }
   </script>
 </body>
